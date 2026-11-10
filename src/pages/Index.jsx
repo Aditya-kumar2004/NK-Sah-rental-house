@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import WhyChooseUs from '@/components/WhyChooseUs';
 import Amenities from '@/components/Amenities';
-import Stats from '@/components/Stats';
-import Gallery from '@/components/Gallery';
-import Reviews from '@/components/Reviews';
-import FAQ from '@/components/FAQ';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/components/WhatsAppButton';
-import ParticleGlobe from '@/components/ParticleGlobe';
+import { siteConfig } from '@/config/site';
+
+const Stats = lazy(() => import('@/components/Stats'));
+const Gallery = lazy(() => import('@/components/Gallery'));
+const Reviews = lazy(() => import('@/components/Reviews'));
+const FAQ = lazy(() => import('@/components/FAQ'));
+const Contact = lazy(() => import('@/components/Contact'));
+const WhatsAppButton = lazy(() => import('@/components/WhatsAppButton'));
+
+const SectionPlaceholder = ({ minHeight = "400px" }) => (
+    <div style={{ minHeight }} className="w-full flex items-center justify-center py-12" aria-hidden="true">
+        <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin opacity-50" />
+    </div>
+);
 
 const Index = () => {
     return (
@@ -21,24 +27,28 @@ const Index = () => {
             <main>
                 <Hero />
                 <About />
-                <WhyChooseUs />
                 <Amenities />
-                <Stats />
-                <Gallery />
-                <Reviews />
-                <FAQ />
-
-                {/* Globe Section - Visual Breaker */}
-                <section className="h-[50vh] min-h-[400px] flex items-center justify-center bg-gradient-to-b from-background to-black border-y border-white/5 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gold/5 via-transparent to-transparent opacity-50 pointer-events-none"></div>
-                    <ParticleGlobe />
-                </section>
-
-                <Contact />
+                <Suspense fallback={<SectionPlaceholder minHeight="180px" />}>
+                    <Stats />
+                </Suspense>
+                <Suspense fallback={<SectionPlaceholder minHeight="500px" />}>
+                    <Gallery />
+                </Suspense>
+                <Suspense fallback={<SectionPlaceholder minHeight="400px" />}>
+                    <Reviews />
+                </Suspense>
+                <Suspense fallback={<SectionPlaceholder minHeight="400px" />}>
+                    <FAQ />
+                </Suspense>
+                <Suspense fallback={<SectionPlaceholder minHeight="600px" />}>
+                    <Contact />
+                </Suspense>
             </main>
 
             <Footer />
-            <WhatsAppButton />
+            <Suspense fallback={null}>
+                <WhatsAppButton />
+            </Suspense>
 
             {/* SEO: Local Business Schema */}
             <script
@@ -46,29 +56,32 @@ const Index = () => {
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": "LodgingBusiness",
-                        "name": "NK Sah Rental House",
-                        "alternateName": "नंद किशोर रेंटल हाउस",
+                        "@type": ["LocalBusiness", "LodgingBusiness"],
+                        "name": siteConfig.name,
+                        "alternateName": siteConfig.nameHindi,
                         "description": "Comfortable, clean and affordable rental stay for families, students and professionals in Bihar",
+                        "image": "https://sahrental.vercel.app/hero/hero.jpg",
+                        "url": "https://sahrental.vercel.app/",
                         "address": {
                             "@type": "PostalAddress",
-                            "streetAddress": "City Montessori School, Chotkipatti Bargaw",
-                            "addressLocality": "Tirhut Division",
+                            "streetAddress": siteConfig.address.full,
+                            "addressLocality": "Bargaw",
                             "addressRegion": "Bihar",
-                            "postalCode": "845101",
+                            "postalCode": siteConfig.address.postalCode,
                             "addressCountry": "IN"
                         },
                         "geo": {
                             "@type": "GeoCoordinates",
-                            "latitude": 26.45,
-                            "longitude": 85.85
+                            "latitude": siteConfig.geo.latitude,
+                            "longitude": siteConfig.geo.longitude
                         },
-                        "telephone": ["+919771233530", "+917050308555"],
-                        "email": "adityakuma876@gmail.com",
+                        "hasMap": siteConfig.maps.searchUrl,
+                        "telephone": siteConfig.phone,
+                        "email": siteConfig.email,
                         "aggregateRating": {
                             "@type": "AggregateRating",
-                            "ratingValue": "5",
-                            "reviewCount": "50"
+                            "ratingValue": "4.9",
+                            "reviewCount": "25"
                         },
                         "priceRange": "₹₹"
                     })

@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
 
-const AnimatedNumber = ({ value, duration = 2, delay = 0 }) => {
+const AnimatedNumber = ({ value, duration = 1.8, delay = 0 }) => {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
+    const isInView = useInView(ref, { once: true, margin: '-40px' });
     const [displayValue, setDisplayValue] = useState(0);
-
     const startTimeRef = useRef(null);
+
+    const isDecimal = typeof value === 'number' && !Number.isInteger(value);
 
     useEffect(() => {
         if (!isInView) return;
@@ -16,15 +17,18 @@ const AnimatedNumber = ({ value, duration = 2, delay = 0 }) => {
         const animate = (timestamp) => {
             if (!startTimeRef.current) startTimeRef.current = timestamp;
             const progress = timestamp - startTimeRef.current;
-
-            // Calculate percentage complete
             const percentage = Math.min(progress / (duration * 1000), 1);
 
-            // Ease out quart
+            // Quartic ease-out
             const ease = 1 - Math.pow(1 - percentage, 4);
 
-            const current = Math.floor(ease * value);
-            setDisplayValue(current);
+            if (isDecimal) {
+                const current = (ease * value).toFixed(1);
+                setDisplayValue(current);
+            } else {
+                const current = Math.floor(ease * value);
+                setDisplayValue(current);
+            }
 
             if (percentage < 1) {
                 animationFrameId = requestAnimationFrame(animate);
@@ -39,10 +43,10 @@ const AnimatedNumber = ({ value, duration = 2, delay = 0 }) => {
             cancelAnimationFrame(animationFrameId);
             clearTimeout(timeoutId);
         };
-    }, [isInView, value, duration, delay]);
+    }, [isInView, value, duration, delay, isDecimal]);
 
     return (
-        <span ref={ref} className="font-serif tabular-nums text-4xl md:text-5xl font-bold text-[#FFD700] text-shadow-gold">
+        <span ref={ref} className="tabular-nums">
             {displayValue}
         </span>
     );

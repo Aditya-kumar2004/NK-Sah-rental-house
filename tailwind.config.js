@@ -1,3 +1,4 @@
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
     darkMode: ["class"],
@@ -6,15 +7,22 @@ export default {
     theme: {
         container: {
             center: true,
-            padding: "2rem",
+            padding: {
+                DEFAULT: "1rem",
+                sm: "1.5rem",
+                lg: "2rem",
+            },
             screens: {
-                "2xl": "1400px",
+                "2xl": "1200px",
             },
         },
         extend: {
+            maxWidth: {
+                container: "1200px",
+            },
             fontFamily: {
-                serif: ['Cinzel', 'Noto Serif Devanagari', 'serif'],
-                sans: ['Outfit', 'sans-serif'],
+                serif: ['"Playfair Display"', '"Noto Serif Devanagari"', 'serif'],
+                sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
             },
             colors: {
                 border: "hsl(var(--border))",
@@ -72,8 +80,8 @@ export default {
                 lg: "var(--radius)",
                 md: "calc(var(--radius) - 2px)",
                 sm: "calc(var(--radius) - 4px)",
-                "2xl": "1.5rem",
-                "3xl": "2rem",
+                "2xl": "1rem", // 16px
+                "3xl": "1.5rem",
             },
             boxShadow: {
                 'soft': 'var(--shadow-soft)',
@@ -132,5 +140,5 @@ export default {
             },
         },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [tailwindcssAnimate],
 };

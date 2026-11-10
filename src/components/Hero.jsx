@@ -1,118 +1,77 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Star, MapPin, Phone } from 'lucide-react';
+import HeroVideoPlayer from './HeroVideoPlayer';
 import { useLanguage } from '@/hooks/useLanguage';
-import LanguageToggle from './LanguageToggle';
-import ParticleGlobe from './ParticleGlobe';
 import { translations } from '@/lib/translations';
+import { siteConfig } from '@/config/site';
 
 const Hero = () => {
     const { language } = useLanguage();
     const t = translations[language].hero;
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
-            {/* Language Toggle - Top Right */}
-            <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="absolute top-24 right-6 z-20"
-            >
-                <LanguageToggle />
-            </motion.div>
+        <section className="relative w-full h-[100svh] min-h-[100svh] flex items-center justify-center overflow-hidden bg-[#FFF8EE] dark:bg-black">
+            {/* Seamless Multi-Clip Video Player Background with Stacked Crossfade & Poster Fallback */}
+            <HeroVideoPlayer />
 
-            {/* Animated background elements */}
-            <div className="absolute inset-0 overflow-hidden">
-                {/* Blobs removed for clean Particle Globe look */}
-            </div>
+            {/* Hero content: Left-aligned on desktop, centered & thumb-friendly at the bottom on mobile */}
+            <div className="container-custom relative z-10 w-full min-h-[100svh] flex flex-col justify-end md:justify-center items-center lg:items-start text-center lg:text-left pt-24 pb-20 md:py-20">
+                {/* Hero container: Transparent with clean, crisp typography and zero smoke or haze */}
+                <div className="max-w-3xl flex flex-col items-center lg:items-start bg-transparent">
+                    {/* Small location pill */}
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/85 dark:bg-white/10 backdrop-blur-md border border-[#B8820F]/30 dark:border-white/20 text-[#1F1A14] dark:text-white/90 text-xs sm:text-sm font-medium tracking-wide shadow-sm mb-4 sm:mb-6">
+                        <span className="text-base leading-none">📍</span>
+                        <span>{t.location}</span>
+                    </div>
 
-            {/* Content Container (Split Layout) */}
-            <div className="container-custom relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen pt-20">
-
-                {/* Left: Text Content */}
-                <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    className="text-center lg:text-left order-2 lg:order-1"
-                >
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8 mx-auto lg:mx-0"
-                    >
-                        <MapPin className="w-4 h-4 text-primary" />
-                        <span className="text-sm font-medium tracking-wide">{t.location}</span>
-                    </motion.div>
-
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-                        <span className="block font-serif gradient-text">{t.title1}</span>
-                        <span className="block font-serif text-foreground">{t.title2}</span>
+                    {/* H1 Title: clamp(2.2rem, 6vw, 4.5rem) */}
+                    <h1 className="text-[clamp(2.2rem,6vw,4.5rem)] font-serif font-bold text-[#110E0B] dark:text-white tracking-tight leading-[1.1] mb-4 sm:mb-5 text-balance drop-shadow-sm dark:drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+                        {t.title || 'NK Sah Rental House'}
                     </h1>
 
-                    <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
-                        {t.description}
+                    {/* Subtitle: Crisp typography without any blurry smoke or glow */}
+                    <p className="text-base sm:text-xl md:text-2xl text-[#1F1A14] dark:text-white/85 font-normal leading-relaxed max-w-2xl mb-5 sm:mb-6 text-balance drop-shadow-none dark:drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]">
+                        {t.subtitle || t.description}
                     </p>
 
-                    {/* Rating Badge */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="flex items-center justify-center lg:justify-start gap-4 mb-10"
-                    >
-                        <div className="flex gap-1">
+                    {/* Rating pill: ★★★★★ 4.9 • Trusted by families */}
+                    <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/85 dark:bg-white/10 backdrop-blur-md border border-[#B8820F]/30 dark:border-white/20 shadow-sm mb-6 sm:mb-8">
+                        <div className="flex items-center gap-1" role="img" aria-label="5 star rating">
                             {[...Array(5)].map((_, i) => (
-                                <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                                <Star
+                                    key={i}
+                                    className="w-5 h-5 fill-amber-400 text-amber-400 drop-shadow-sm"
+                                />
                             ))}
                         </div>
-                        <span className="flex items-center gap-2 text-foreground font-medium">
-                            4.9 <span className="w-1 h-1 rounded-full bg-foreground/30" /> {t.rating}
+                        <span className="text-[#110E0B] dark:text-white font-medium text-sm sm:text-base flex items-center gap-2">
+                            <span className="font-semibold">4.9</span>
+                            <span className="w-1 h-1 rounded-full bg-[#110E0B]/30 dark:bg-white/60 inline-block" />
+                            <span className="text-[#3D3226] dark:text-white/90">{t.rating}</span>
                         </span>
-                    </motion.div>
+                    </div>
 
-                    <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-                        <a href="tel:+919771233530" className="btn-primary-3d w-full sm:w-auto flex items-center justify-center gap-2 group">
-                            <Phone className="w-5 h-5 transition-transform group-hover:rotate-12" />
-                            {t.callNow}
+                    {/* Two buttons: Primary 'Call Now' (Red Luxury Gradient) and Secondary 'Get Directions' */}
+                    <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                        <a
+                            href={`tel:${siteConfig.phone}`}
+                            className="relative w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-white bg-gradient-to-r from-red-600 via-red-500 to-rose-600 hover:from-red-500 hover:to-rose-500 active:scale-95 shadow-[0_4px_20px_rgba(220,38,38,0.45)] hover:shadow-[0_6px_25px_rgba(220,38,38,0.65)] border border-red-400/30 transition-all duration-300 text-base select-none group"
+                        >
+                            <Phone className="w-5 h-5 text-white transition-transform duration-300 group-hover:rotate-12" />
+                            <span>{t.callNow}</span>
                         </a>
                         <a
-                            href="#contact"
-                            className="btn-outline-3d w-full sm:w-auto flex items-center justify-center gap-2"
+                            href={siteConfig.maps.directionsUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full sm:w-auto min-h-[48px] flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl text-[#1F1A14] dark:text-white bg-white dark:bg-white/10 hover:bg-[#FFF3DB] dark:hover:bg-white/20 backdrop-blur-md border border-[#B8820F]/35 dark:border-white/25 hover:border-[#B8820F] dark:hover:border-white/50 transition-all duration-300 shadow-sm hover:-translate-y-0.5"
                         >
-                            <MapPin className="w-5 h-5" />
-                            {t.getDirections}
+                            <MapPin className="w-5 h-5 text-amber-500" />
+                            <span>{t.getDirections}</span>
                         </a>
                     </div>
-                </motion.div>
-
-                {/* Right: Particle Globe Visual */}
-                <div className="hidden lg:block order-1 lg:order-2 h-full min-h-[500px]">
-                    <ParticleGlobe />
                 </div>
             </div>
-
-            {/* Scroll indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2"
-            >
-                <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2"
-                >
-                    <motion.div
-                        animate={{ opacity: [1, 0, 1], y: [0, 8, 0] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="w-1.5 h-1.5 rounded-full bg-primary"
-                    />
-                </motion.div>
-            </motion.div>
         </section>
     );
 };

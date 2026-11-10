@@ -7,11 +7,12 @@ const LanguageToggle = () => {
 
     return (
         <motion.button
+            type="button"
             onClick={toggleLanguage}
-            className="relative flex items-center gap-1 px-3 py-1.5 rounded-full bg-card/80 backdrop-blur-sm border border-border/50 text-sm font-medium transition-colors hover:bg-card"
+            className="relative min-h-[44px] min-w-[58px] inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-full bg-white/90 dark:bg-card/80 backdrop-blur-sm border border-[#B8820F]/30 dark:border-border/50 text-sm font-medium transition-colors hover:bg-white dark:hover:bg-card shadow-sm"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            aria-label={`Switch to ${language === 'en' ? 'Hindi' : 'English'}`}
+            aria-label={`EN / हि: Switch language to ${language === 'en' ? 'Hindi' : 'English'}`}
         >
             <span
                 className={`transition-colors ${language === 'en' ? 'text-primary font-bold' : 'text-muted-foreground'}`}

@@ -16,33 +16,34 @@ const Stats = () => {
     ];
 
     return (
-        <section className="py-20 bg-background relative border-y border-white/5">
+        <section className="bg-white dark:bg-card border-y border-[#F0E4CE] dark:border-border/80 shadow-[0_10px_30px_rgba(120,90,30,0.06)] dark:shadow-subtle py-8 md:py-12 relative">
             <div className="container-custom">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#F0E4CE] dark:divide-border/60">
                     {statsData.map((stat, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="text-center group"
+                            initial={{ opacity: 0, y: 16 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-20px' }}
+                            transition={{ duration: 0.5, delay: index * 0.08 }}
+                            className={`flex flex-col items-center justify-center text-center p-4 sm:p-6 ${
+                                index === 1 ? 'border-t-0 md:border-t-0' : ''
+                            }`}
                         >
-                            <div className="relative inline-block">
-                                <span className="text-4xl md:text-6xl font-serif font-bold text-gold text-shadow-gold block mb-2">
-                                    {/* Handle float vs integer animation slightly differently if needed, but AnimatedNumber takes raw value */}
-                                    <AnimatedNumber value={stat.value} />
-                                    <span className="text-3xl md:text-5xl ml-1">{stat.suffix}</span>
+                            <div className="flex items-baseline justify-center font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-primary tracking-tight mb-1">
+                                <AnimatedNumber value={stat.value} />
+                                <span className="ml-0.5 text-2xl sm:text-3xl lg:text-4xl text-primary font-serif">
+                                    {stat.suffix}
                                 </span>
-                                {/* Glow effect behind number */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gold/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
 
-                            <p className="text-muted-foreground font-medium uppercase tracking-wider text-sm mt-2">
+                            <p className="text-[#1F1A14] dark:text-foreground/90 font-medium text-xs sm:text-sm tracking-wider uppercase mt-1">
                                 {stat.label}
                             </p>
                             {stat.sub && (
-                                <p className="text-xs text-primary/80 mt-1">{stat.sub}</p>
+                                <p className="text-xs text-[#7A6D5C] dark:text-muted-foreground mt-0.5 font-normal">
+                                    {stat.sub}
+                                </p>
                             )}
                         </motion.div>
                     ))}

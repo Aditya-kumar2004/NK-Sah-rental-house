@@ -4,8 +4,10 @@ import { motion } from 'framer-motion';
 const TiltCard3D = ({
     children,
     className = '',
-    glowOnHover = true,
-    intensity = 15,
+    innerClassName = '',
+    glowOnHover = false,
+    intensity = 10,
+    noPadding = false,
 }) => {
     const cardRef = useRef(null);
     const [rotateX, setRotateX] = useState(0);
@@ -49,12 +51,12 @@ const TiltCard3D = ({
             animate={{
                 rotateX,
                 rotateY,
-                scale: isHovering ? 1.02 : 1,
+                y: isHovering ? -4 : 0,
             }}
             transition={{
                 type: 'spring',
                 stiffness: 300,
-                damping: 30,
+                damping: 25,
                 mass: 0.5,
             }}
             style={{
@@ -62,21 +64,27 @@ const TiltCard3D = ({
             }}
         >
             <div
-                className={`relative glass-card p-6 md:p-8 transition-shadow duration-500 ${glowOnHover && isHovering ? 'shadow-glow shadow-elevated' : 'shadow-card'
-                    }`}
+                className={`relative bg-card border border-border/80 rounded-2xl transition-all duration-300 ${
+                    noPadding ? '' : 'p-6 md:p-8'
+                } ${
+                    isHovering
+                        ? 'shadow-card-hover border-primary/40'
+                        : 'shadow-card'
+                } ${innerClassName}`}
                 style={{
                     transformStyle: 'preserve-3d',
                 }}
             >
-                {/* Subtle inner glow effect */}
-                <div
-                    className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 pointer-events-none"
-                    style={{
-                        background: 'radial-gradient(circle at center, hsl(38 70% 50% / 0.1), transparent 70%)',
-                        opacity: isHovering ? 1 : 0,
-                    }}
-                />
-                <div style={{ transform: 'translateZ(20px)' }}>
+                {glowOnHover && (
+                    <div
+                        className="absolute inset-0 rounded-2xl transition-opacity duration-500 pointer-events-none"
+                        style={{
+                            background: 'radial-gradient(circle at center, hsl(var(--primary) / 0.08), transparent 70%)',
+                            opacity: isHovering ? 1 : 0,
+                        }}
+                    />
+                )}
+                <div style={{ transform: 'translateZ(10px)' }} className="h-full">
                     {children}
                 </div>
             </div>

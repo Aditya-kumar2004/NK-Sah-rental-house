@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SectionHeading from './SectionHeading';
 import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
-import TiltCard3D from './TiltCard3D';
 import { useLanguage } from '@/hooks/useLanguage';
 import { translations } from '@/lib/translations';
 
-// Import gallery images
-import room1 from '@/assets/gallery/room-1.jpg';
-import room2 from '@/assets/gallery/room-2.jpg';
-import kitchen from '@/assets/gallery/kitchen.jpg';
-import bathroom from '@/assets/gallery/bathroom.jpg';
-import exterior from '@/assets/gallery/exterior.jpg';
-import livingRoom from '@/assets/gallery/living-room.jpg';
+// Import gallery images directly (WebP optimized)
+import exteriorImg from '@/assets/gallery/exterior.webp';
+import room1Img from '@/assets/gallery/room-1.webp';
+import room2Img from '@/assets/gallery/room-2.webp';
+import livingRoomImg from '@/assets/gallery/living-room.webp';
+import kitchenImg from '@/assets/gallery/kitchen.webp';
+import bathroomImg from '@/assets/gallery/bathroom.webp';
 
-const imageSources = [exterior, room1, room2, livingRoom, kitchen, bathroom];
+const imageFiles = [
+    exteriorImg,
+    room1Img,
+    room2Img,
+    livingRoomImg,
+    kitchenImg,
+    bathroomImg,
+];
 
 const Gallery = () => {
     const [selectedImage, setSelectedImage] = useState(null);
     const { language } = useLanguage();
     const t = translations[language].gallery;
 
-    const galleryImages = imageSources.map((src, index) => ({
-        src,
-        title: t.images[index].title,
-        category: t.images[index].category,
+    const touchStartX = useRef(0);
+    const touchEndX = useRef(0);
+
+    const galleryImages = t.images.map((img, index) => ({
+        ...img,
+        src: imageFiles[index],
     }));
 
     const openLightbox = (index) => {
@@ -33,190 +42,223 @@ const Gallery = () => {
 
     const closeLightbox = () => {
         setSelectedImage(null);
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = 'unset';
     };
 
     const goToPrevious = () => {
-        if (selectedImage !== null) {
-            setSelectedImage(selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1);
-        }
+        setSelectedImage((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
     };
 
     const goToNext = () => {
-        if (selectedImage !== null) {
-            setSelectedImage(selectedImage === galleryImages.length - 1 ? 0 : selectedImage + 1);
+        setSelectedImage((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
+    };
+
+    // Global keyboard listener for Lightbox (Escape, ArrowLeft, ArrowRight)
+    useEffect(() => {
+        if (selectedImage === null) return;
+
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') goToPrevious();
+            if (e.key === 'ArrowRight') goToNext();
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedImage]);
+
+    // Touch swipe navigation for mobile Lightbox
+    const handleTouchStart = (e) => {
+        touchStartX.current = e.touches[0].clientX;
+        touchEndX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e) => {
+        touchEndX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        const delta = touchStartX.current - touchEndX.current;
+        const minSwipeThreshold = 50;
+
+        if (Math.abs(delta) > minSwipeThreshold) {
+            if (delta > 0) {
+                // Swiped left -> show next
+                goToNext();
+            } else {
+                // Swiped right -> show previous
+                goToPrevious();
+            }
         }
     };
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') goToPrevious();
-        if (e.key === 'ArrowRight') goToNext();
-    };
-
     return (
-        <section id="gallery" className="section-padding bg-cream">
+        <section id="gallery" className="section-padding bg-[#FFF8EE] dark:bg-background relative">
             <div className="container-custom">
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-100px' }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
-                >
-                    <span className="text-primary font-medium text-sm uppercase tracking-wider">{t.title}</span>
-                    <h2 className="text-3xl md:text-5xl font-serif font-bold text-deep-brown mt-2">
-                        {t.heading}
-                    </h2>
-                    <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-                        {t.subtitle}
-                    </p>
-                </motion.div>
+                <SectionHeading
+                    label={t.title}
+                    title={t.heading}
+                    subtitle={t.subtitle}
+                />
 
-                {/* Gallery Grid */}
+                {/* Gallery Grid with hover zoom */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, margin: '-100px' }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
                     {galleryImages.map((image, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 40 }}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-50px' }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            viewport={{ once: true, margin: '-40px' }}
+                            transition={{ duration: 0.5, delay: index * 0.08 }}
+                            className="h-full"
                         >
-                            <TiltCard3D intensity={10} className="h-full">
-                                <div
-                                    className="relative group cursor-pointer overflow-hidden rounded-xl -m-6 md:-m-8"
-                                    onClick={() => openLightbox(index)}
-                                >
-                                    <div className="aspect-[4/3] overflow-hidden">
-                                        <img
-                                            src={image.src}
-                                            alt={image.title}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                            loading="lazy"
-                                        />
+                            <div
+                                className="relative group cursor-pointer overflow-hidden rounded-2xl border border-border/80 bg-card shadow-card transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 hover:border-primary/40 h-full"
+                                onClick={() => openLightbox(index)}
+                            >
+                                <div className="aspect-[4/3] overflow-hidden bg-muted">
+                                    <img
+                                        src={image.src}
+                                        alt={image.title}
+                                        width="600"
+                                        height="450"
+                                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </div>
+
+                                {/* Hover Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                                    <div className="transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
+                                        <span className="text-amber-400 text-xs uppercase tracking-wider font-semibold">
+                                            {image.category}
+                                        </span>
+                                        <h3 className="text-white font-serif text-xl font-semibold mt-1">
+                                            {image.title}
+                                        </h3>
                                     </div>
 
-                                    {/* Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-deep-brown/80 via-deep-brown/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
-                                        <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                            <span className="text-gold text-xs uppercase tracking-wider font-medium">
-                                                {image.category}
-                                            </span>
-                                            <h3 className="text-primary-foreground font-serif text-xl font-semibold mt-1">
-                                                {image.title}
-                                            </h3>
-                                        </div>
-
-                                        {/* Zoom icon */}
-                                        <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-card/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                            <ZoomIn className="w-5 h-5 text-primary-foreground" />
-                                        </div>
+                                    {/* Zoom Icon */}
+                                    <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white">
+                                        <ZoomIn className="w-5 h-5" />
                                     </div>
                                 </div>
-                            </TiltCard3D>
+                            </div>
                         </motion.div>
                     ))}
                 </motion.div>
             </div>
 
-            {/* Lightbox */}
+            {/* Lightbox with keyboard & mobile swipe navigation */}
             <AnimatePresence>
                 {selectedImage !== null && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-[100] bg-deep-brown/95 backdrop-blur-lg flex items-center justify-center"
+                        transition={{ duration: 0.25 }}
+                        className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center select-none"
                         onClick={closeLightbox}
-                        onKeyDown={handleKeyDown}
-                        tabIndex={0}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
                     >
                         {/* Close button */}
                         <button
+                            type="button"
                             onClick={closeLightbox}
-                            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-card/10 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-card/20 transition-colors z-10"
+                            className="absolute top-6 right-6 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-colors z-10"
+                            aria-label="Close image preview"
                         >
                             <X className="w-6 h-6" />
                         </button>
 
                         {/* Previous button */}
                         <button
+                            type="button"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 goToPrevious();
                             }}
-                            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-card/10 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-card/20 transition-colors z-10"
+                            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-colors z-10"
+                            aria-label="Previous image"
                         >
                             <ChevronLeft className="w-6 h-6" />
                         </button>
 
                         {/* Next button */}
                         <button
+                            type="button"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 goToNext();
                             }}
-                            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-card/10 backdrop-blur-sm flex items-center justify-center text-primary-foreground hover:bg-card/20 transition-colors z-10"
+                            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-colors z-10"
+                            aria-label="Next image"
                         >
                             <ChevronRight className="w-6 h-6" />
                         </button>
 
-                        {/* Image */}
+                        {/* Image Container */}
                         <motion.div
                             key={selectedImage}
-                            initial={{ opacity: 0, scale: 0.9 }}
+                            initial={{ opacity: 0, scale: 0.96 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            transition={{ duration: 0.3 }}
+                            exit={{ opacity: 0, scale: 0.96 }}
+                            transition={{ duration: 0.25 }}
                             className="relative max-w-5xl max-h-[85vh] mx-4"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <img
                                 src={galleryImages[selectedImage].src}
                                 alt={galleryImages[selectedImage].title}
-                                className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+                                className="max-w-full max-h-[78vh] object-contain rounded-2xl shadow-2xl border border-white/10"
                             />
 
-                            {/* Image info */}
-                            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-deep-brown/90 to-transparent rounded-b-2xl">
-                                <span className="text-gold text-xs uppercase tracking-wider font-medium">
+                            {/* Image Caption */}
+                            <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 via-black/50 to-transparent rounded-b-2xl">
+                                <span className="text-amber-400 text-xs uppercase tracking-wider font-semibold">
                                     {galleryImages[selectedImage].category}
                                 </span>
-                                <h3 className="text-primary-foreground font-serif text-2xl font-semibold mt-1">
+                                <h3 className="text-white font-serif text-xl sm:text-2xl font-semibold mt-1">
                                     {galleryImages[selectedImage].title}
                                 </h3>
-                                <p className="text-primary-foreground/60 text-sm mt-2">
+                                <p className="text-white/60 text-xs sm:text-sm mt-0.5">
                                     {selectedImage + 1} / {galleryImages.length}
                                 </p>
                             </div>
                         </motion.div>
 
-                        {/* Thumbnail strip */}
-                        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-[90vw] px-4 pb-2">
+                        {/* Thumbnail Bar */}
+                        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2 overflow-x-auto max-w-[90vw] px-4 pb-1">
                             {galleryImages.map((image, index) => (
                                 <button
                                     key={index}
+                                    type="button"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         setSelectedImage(index);
                                     }}
-                                    className={`flex-shrink-0 w-16 h-12 rounded-lg overflow-hidden border-2 transition-all ${index === selectedImage
-                                        ? 'border-gold opacity-100 scale-110'
-                                        : 'border-transparent opacity-50 hover:opacity-75'
-                                        }`}
+                                    className={`flex-shrink-0 w-14 h-11 min-h-[44px] min-w-[44px] rounded-lg overflow-hidden border-2 transition-all ${
+                                        index === selectedImage
+                                            ? 'border-primary opacity-100 scale-105'
+                                            : 'border-transparent opacity-50 hover:opacity-80'
+                                    }`}
+                                    aria-label={`View photo ${index + 1}`}
                                 >
                                     <img
                                         src={image.src}
                                         alt={image.title}
                                         className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                 </button>
                             ))}

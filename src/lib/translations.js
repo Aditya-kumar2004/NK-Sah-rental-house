@@ -15,10 +15,11 @@ export const translations = {
         },
         // Hero
         hero: {
-            location: 'Chotkipatti Bargaw, Bihar',
+            location: 'Chotkipatti, Bargaw, Bihar',
+            title: 'NK Sah Rental House',
             title1: 'NK Sah',
             title2: 'Rental House',
-            subtitle: 'NK Sah Rental House',
+            subtitle: 'Comfortable, Clean & Affordable Rental Stay',
             description: 'Comfortable, Clean & Affordable Rental Stay',
             rating: 'Trusted by families',
             callNow: 'Call Now',
@@ -55,17 +56,18 @@ export const translations = {
             cleanRooms: 'Clean Rooms',
             affordableRates: 'Affordable Rates',
         },
-        // Amenities
+        // Amenities & Why Choose Us (Merged)
         amenities: {
-            features: 'Features',
-            title: 'Our Amenities',
-            subtitle: 'Everything you need for a comfortable and pleasant stay',
+            features: 'Amenities & Highlights',
+            title: 'Amenities & Why Choose Us',
+            subtitle: 'Everything you need for a comfortable, secure, and hassle-free stay',
             items: [
-                { title: 'Clean & Hygienic', description: 'Spotless rooms maintained with the highest standards of cleanliness.' },
-                { title: 'Peaceful Environment', description: 'Quiet and serene surroundings perfect for rest and relaxation.' },
-                { title: 'Family Friendly', description: 'Safe and welcoming atmosphere suitable for families of all sizes.' },
-                { title: 'Easy Road Access', description: 'Conveniently located with excellent connectivity to main roads.' },
-                { title: 'Helpful Owner', description: 'Dedicated support to ensure your stay is comfortable and pleasant.' },
+                { title: 'Clean & Hygienic', description: 'Spotless rooms maintained with daily cleaning and high standards of cleanliness for healthy living.' },
+                { title: 'Peaceful Environment', description: 'Quiet surroundings ideal for studying, remote work, and restful relaxation.' },
+                { title: 'Family Friendly', description: 'A safe, secure, and welcoming atmosphere preferred by families and students.' },
+                { title: 'Affordable Pricing', description: 'Best-in-class comfort and transparent pricing at the most reasonable monthly rent.' },
+                { title: 'Prime Location / Easy Road Access', description: 'Conveniently located near City Montessori School with excellent road connectivity.' },
+                { title: 'Helpful Owner', description: 'Dedicated on-site support and personalized care to ensure your stay is pleasant.' },
             ],
         },
         // Gallery
@@ -86,24 +88,49 @@ export const translations = {
         reviews: {
             testimonials: 'Testimonials',
             title: 'What Our Guests Say',
+            subtitle: 'Real stories from residents who call NK Sah Rental House their home',
+            trustBadge: '4.9 ★★★★★ Rating • Verified Tenant Reviews',
+            verifiedStay: 'Verified Resident',
             items: [
-                { name: 'Ratnesh', text: 'Great rental property! Clean and well-maintained. The owner is very helpful and the location is perfect for families.', date: 'Recent Guest' },
-                { name: 'Arnav Prajapati', text: 'Wonderful stay! Would happily rent again. The rooms are spacious and the environment is very peaceful.', date: 'Recent Guest' },
-                { name: 'Satisfied Tenant', text: 'Perfect for students and working professionals. Affordable rent with all basic amenities. Highly recommended!', date: 'Long-term Tenant' },
-                { name: 'Amit Kumar', text: 'Best place to stay in Bargaw. Very safe and secure.', date: 'Student' },
-                { name: 'Priya Singh', text: 'Cleanliness is top notch. Feels like home.', date: 'Working Professional' },
+                { name: 'Ratnesh', text: 'Great rental property! Clean and well-maintained. The owner is very helpful and the location is perfect for families.', date: 'Recent Guest', tag: 'Family Stay', initials: 'RK' },
+                { name: 'Arnav Prajapati', text: 'Wonderful stay! Would happily rent again. The rooms are spacious and the environment is very peaceful.', date: 'Recent Guest', tag: 'Peaceful Living', initials: 'AP' },
+                { name: 'Satisfied Tenant', text: 'Perfect for students and working professionals. Affordable rent with all basic amenities. Highly recommended!', date: 'Long-term Tenant', tag: 'Long-term Stay', initials: 'ST' },
+                { name: 'Amit Kumar', text: 'Best place to stay in Bargaw. Very safe and secure with continuous water and power.', date: 'Student', tag: 'Student Living', initials: 'AK' },
+                { name: 'Priya Singh', text: 'Cleanliness is top notch. Quiet neighborhood and peaceful ambience. Feels just like home.', date: 'Working Professional', tag: 'Home Comfort', initials: 'PS' },
+                { name: 'Rahul Sharma', text: 'Peaceful location away from the noise, yet close to everything. The owner treats guests with great respect.', date: 'Recent Guest', tag: 'Safe & Clean', initials: 'RS' },
             ],
         },
         // FAQ
         faq: {
+            label: 'FAQ',
             title: 'Frequently Asked Questions',
-            subtitle: 'Common questions about staying with us',
+            subtitle: 'Everything you need to know about staying at NK Sah Rental House',
+            stillHaveQuestions: 'Still Have Questions?',
+            stillHaveQuestionsSub: 'Can’t find the answer you’re looking for? Contact the owner directly for instant details.',
+            callOwner: 'Call Directly',
+            chatWhatsApp: 'Chat on WhatsApp',
+            quickResponse: 'Fast response 24/7',
             items: [
-                { question: 'Is this suitable for students?', answer: 'Yes, absolutely! We provide a quiet and peaceful environment that is perfect for students to focus on their studies.' },
-                { question: 'Is it family friendly?', answer: 'Yes, our property is safe, secure, and maintains a family-oriented atmosphere. We have many happy families residing with us.' },
-                { question: 'What is the rent range?', answer: 'We offer very affordable rates. Please contact us directly via phone or WhatsApp for the latest pricing and availability.' },
-                { question: 'Is food included?', answer: 'We provide rental accommodation. While we do not provide food directly, there are many tiffin services and eateries nearby.' },
-                { question: 'How to contact the owner?', answer: 'You can call us anytime at +91 9771233530 or message us on WhatsApp using the button on this website.' },
+                {
+                    question: 'Is the rental house family friendly?',
+                    answer: 'Yes, absolutely. The property is maintained with a safe, respectful, and peaceful atmosphere, making it ideal for families and students alike. We prioritize security, cleanliness, and a welcoming neighborhood.'
+                },
+                {
+                    question: 'What is the monthly rent range?',
+                    answer: 'Our monthly rents typically range between ₹2,000 – ₹5,000 per month depending on room size, single or shared occupancy, and specific room requirements. Please call or WhatsApp us for exact current room availability and rates.'
+                },
+                {
+                    question: 'Is food or tiffin service included?',
+                    answer: 'We provide rental accommodation with access to clean kitchen facilities. While in-house cooked meals are not included, several trusted local tiffin and dabba delivery services deliver fresh home-cooked meals right to the doorstep.'
+                },
+                {
+                    question: 'How do I contact the owner or schedule a visit?',
+                    answer: 'You can directly call the owner anytime at +91 9771233530 or message us on WhatsApp via the button on this page. We are happy to show you the rooms in person at your convenience.'
+                },
+                {
+                    question: 'Are water and electricity included in the rent?',
+                    answer: '24/7 continuous running water is fully included in the monthly rent. Electricity is calculated based on individual sub-meter readings at standard local government rates.'
+                },
             ]
         },
         // Contact
@@ -112,14 +139,15 @@ export const translations = {
             title: 'Contact Us',
             subtitle: 'Ready to book your stay? Reach out to us anytime',
             contactInfo: 'Contact Information',
-            primaryPhone: 'Primary Phone',
+            primaryPhone: 'Phone',
             secondaryPhone: 'Secondary Phone',
             email: 'Email',
             availability: 'Availability',
             available247: 'Available 24/7 for inquiries',
             ourLocation: 'Our Location',
-            fullAddress: 'Full Address',
+            fullAddress: 'Near City Montessori School, Chotkipatti, Bargaw, Bihar – 845401',
             openInMaps: 'Open in Google Maps',
+            getDirections: 'Get Directions',
         },
         // Map
         map: {
@@ -129,13 +157,21 @@ export const translations = {
         // Footer
         footer: {
             rentalHouse: 'Rental House',
-            tagline: 'Your trusted choice for comfortable, clean, and affordable rental accommodation in Bihar.',
+            tagline: 'Your trusted choice for comfortable, clean, and affordable rental accommodation in Bargaw, Bihar.',
             quickLinks: 'Quick Links',
-            contact: 'Contact',
-            address: 'Address',
+            contact: 'Contact Us',
+            address: 'Property Location',
             allRights: 'All rights reserved.',
             madeWith: 'Made with',
-            inBihar: 'in Bihar',
+            inBihar: 'for guests in Bihar',
+            bannerTitle: 'Ready to Experience a Comfortable Stay?',
+            bannerSubtitle: 'Contact the owner directly to schedule a private viewing or check room availability.',
+            callNow: 'Call Owner Now',
+            chatWhatsApp: 'Chat on WhatsApp',
+            backToTop: 'Back to Top',
+            verifiedProperty: 'Verified Property',
+            waterPower: '24/7 Water & Power',
+            familyFriendly: 'Family & Student Friendly',
         },
     },
     hi: {
@@ -154,10 +190,11 @@ export const translations = {
         },
         // Hero
         hero: {
-            location: 'छोटकीपट्टी बरगांव, बिहार',
+            location: 'छोटकीपट्टी, बरगांव, बिहार',
+            title: 'नंद किशोर रेंटल हाउस',
             title1: 'नंद किशोर',
             title2: 'रेंटल हाउस',
-            subtitle: 'NK Sah Rental House',
+            subtitle: 'आरामदायक, स्वच्छ और किफायती किराये पर रहने की सुविधा',
             description: 'आरामदायक, स्वच्छ और किफायती किराये पर रहने की सुविधा',
             rating: 'परिवारों द्वारा विश्वसनीय',
             callNow: 'अभी कॉल करें',
@@ -194,17 +231,18 @@ export const translations = {
             cleanRooms: 'साफ कमरे',
             affordableRates: 'किफायती दरें',
         },
-        // Amenities
+        // Amenities & Why Choose Us (Merged)
         amenities: {
-            features: 'विशेषताएं',
-            title: 'हमारी सुविधाएं',
-            subtitle: 'आरामदायक और सुखद प्रवास के लिए सब कुछ',
+            features: 'सुविधाएं और विशेषताएं',
+            title: 'सुविधाएं और हमें क्यों चुनें',
+            subtitle: 'एक आरामदायक, सुरक्षित और सुखद प्रवास के लिए आवश्यक सब कुछ',
             items: [
-                { title: 'स्वच्छ और स्वास्थ्यकर', description: 'सफाई के उच्चतम मानकों के साथ बेदाग कमरे।' },
-                { title: 'शांतिपूर्ण वातावरण', description: 'आराम और विश्राम के लिए शांत और सुखद माहौल।' },
-                { title: 'परिवार के अनुकूल', description: 'सभी आकार के परिवारों के लिए सुरक्षित और स्वागतयोग्य माहौल।' },
-                { title: 'आसान सड़क पहुंच', description: 'मुख्य सड़कों से उत्कृष्ट कनेक्टिविटी के साथ सुविधाजनक स्थान।' },
-                { title: 'सहायक मालिक', description: 'आपके प्रवास को आरामदायक और सुखद बनाने के लिए समर्पित सहायता।' },
+                { title: 'स्वच्छ और स्वास्थ्यकर', description: 'दैनिक सफाई और स्वच्छता के उच्च मानकों के साथ सुसज्जित बेदाग और स्वच्छ कमरे।' },
+                { title: 'शांतिपूर्ण वातावरण', description: 'अध्ययन, कार्य और विश्राम के लिए आदर्श शांत और सुखद माहौल।' },
+                { title: 'परिवार के अनुकूल', description: 'परिवारों और छात्रों द्वारा पसंद किया जाने वाला एक सुरक्षित और स्वागतयोग्य माहौल।' },
+                { title: 'किफायती मूल्य', description: 'सबसे उचित मासिक किराए पर सर्वोत्तम सुविधाएं और पारदर्शी व्यवस्था।' },
+                { title: 'प्रमुख स्थान / आसान सड़क पहुंच', description: 'सिटी मोंटेसरी स्कूल के पास मुख्य सड़कों से बेहतरीन कनेक्टिविटी के साथ स्थित।' },
+                { title: 'मददगार मालिक', description: 'आपके प्रवास को आरामदायक और सुखद बनाने के लिए हमेशा समर्पित ऑन-साइट सहायता।' },
             ],
         },
         // Gallery
@@ -225,24 +263,49 @@ export const translations = {
         reviews: {
             testimonials: 'प्रशंसापत्र',
             title: 'हमारे मेहमान क्या कहते हैं',
+            subtitle: 'उन निवासियों के वास्तविक अनुभव जो नंद किशोर रेंटल हाउस को अपना घर मानते हैं',
+            trustBadge: '4.9 ★★★★★ रेटिंग • सत्यापित किरायेदार समीक्षाएं',
+            verifiedStay: 'सत्यापित किरायेदार',
             items: [
-                { name: 'रत्नेश', text: 'बढ़िया किराये की संपत्ति! साफ और अच्छी तरह से बनाए रखा गया। मालिक बहुत मददगार हैं और स्थान परिवारों के लिए एकदम सही है।', date: 'हाल के मेहमान' },
-                { name: 'अर्णव प्रजापति', text: 'शानदार प्रवास! खुशी से फिर से किराये पर लेंगे। कमरे विशाल हैं और वातावरण बहुत शांतिपूर्ण है।', date: 'हाल के मेहमान' },
-                { name: 'संतुष्ट किरायेदार', text: 'छात्रों और कामकाजी पेशेवरों के लिए एकदम सही। सभी बुनियादी सुविधाओं के साथ किफायती किराया। अत्यधिक अनुशंसित!', date: 'दीर्घकालिक किरायेदार' },
-                { name: 'अमित कुमार', text: 'बरगांव में रहने के लिए सबसे अच्छी जगह। बहुत सुरक्षित।', date: 'छात्र' },
-                { name: 'प्रिया सिंह', text: 'सफाई बहुत अच्छी है। बिल्कुल घर जैसा लगता है।', date: 'कामकाजी पेशेवर' },
+                { name: 'रत्नेश', text: 'शानदार रेंटल प्रॉपर्टी! बहुत साफ और व्यवस्थित। मकान मालिक बहुत मददगार हैं और स्थान परिवारों के लिए एकदम सही है।', date: 'हाल के मेहमान', tag: 'पारिवारिक प्रवास', initials: 'RK' },
+                { name: 'अर्णव प्रजापति', text: 'शानदार प्रवास! खुशी से फिर से किराये पर लेंगे। कमरे विशाल हैं और वातावरण बहुत शांतिपूर्ण है।', date: 'हाल के मेहमान', tag: 'शांत वातावरण', initials: 'AP' },
+                { name: 'संतुष्ट किरायेदार', text: 'छात्रों और कामकाजी पेशेवरों के लिए एकदम सही। सभी बुनियादी सुविधाओं के साथ किफायती किराया। अत्यधिक अनुशंसित!', date: 'दीर्घकालिक किरायेदार', tag: 'दीर्घकालिक प्रवास', initials: 'ST' },
+                { name: 'अमित कुमार', text: 'बरगांव में रहने के लिए सबसे अच्छी जगह। 24/7 पानी और बिजली के साथ बहुत सुरक्षित।', date: 'छात्र', tag: 'छात्र प्रवास', initials: 'AK' },
+                { name: 'प्रिया सिंह', text: 'सफाई बहुत अच्छी है। शांत परिवेश और सुरक्षित माहौल। बिल्कुल घर जैसा लगता है।', date: 'कामकाजी पेशेवर', tag: 'घर जैसा आराम', initials: 'PS' },
+                { name: 'राहुल शर्मा', text: 'शोरगुल से दूर शांत वातावरण, फिर भी शहर और बाजार के करीब। मकान मालिक का व्यवहार बहुत आदरपूर्ण है।', date: 'हाल के मेहमान', tag: 'शांत व सुरक्षित', initials: 'RS' },
             ],
         },
         // FAQ
         faq: {
+            label: 'सामान्य प्रश्न',
             title: 'अक्सर पूछे जाने वाले सवाल',
-            subtitle: 'हमारे साथ रहने के बारे में सामान्य प्रश्न',
+            subtitle: 'नंद किशोर रेंटल हाउस में ठहरने के बारे में जरूरी जानकारी',
+            stillHaveQuestions: 'क्या आपका कोई और सवाल है?',
+            stillHaveQuestionsSub: 'क्या आपको अपने प्रश्न का उत्तर नहीं मिला? त्वरित जानकारी के लिए सीधे मकान मालिक से संपर्क करें।',
+            callOwner: 'सीधे कॉल करें',
+            chatWhatsApp: 'व्हाट्सएप चैट',
+            quickResponse: '24/7 तुरंत सहायता',
             items: [
-                { question: 'क्या यह छात्रों के लिए उपयुक्त है?', answer: 'जी हाँ, बिल्कुल! हम एक शांत और शांतिपूर्ण वातावरण प्रदान करते हैं जो छात्रों के लिए पढ़ाई पर ध्यान केंद्रित करने के लिए एकदम सही है।' },
-                { question: 'क्या यह परिवार के अनुकूल है?', answer: 'हाँ, हमारी संपत्ति सुरक्षित है और एक पारिवारिक माहौल बनाए रखती है। हमारे साथ कई खुशहाल परिवार रह रहे हैं।' },
-                { question: 'किराया सीमा क्या है?', answer: 'हम बहुत ही किफायती दरें प्रदान करते हैं। कृपया नवीनतम मूल्य और उपलब्धता के लिए हमें सीधे फोन या व्हाट्सएप पर संपर्क करें।' },
-                { question: 'क्या खाना शामिल है?', answer: 'हम किराये पर आवास प्रदान करते हैं। हालांकि हम सीधे भोजन उपलब्ध नहीं कराते हैं, लेकिन पास में कई टिफिन सेवाएं और भोजनालय हैं।' },
-                { question: 'मालिक से कैसे संपर्क करें?', answer: 'आप हमें किसी भी समय +91 9771233530 पर कॉल कर सकते हैं या इस वेबसाइट पर दिए गए बटन का उपयोग करके व्हाट्सएप पर संदेश भेज सकते हैं।' },
+                {
+                    question: 'क्या रेंटल हाउस परिवार के अनुकूल है?',
+                    answer: 'जी हाँ, बिल्कुल। यह संपत्ति एक सुरक्षित, शांत और सम्मानजनक पारिवारिक माहौल के साथ संचालित होती है। हम परिवारों और छात्रों के लिए सुरक्षा, स्वच्छता और शांतिपूर्ण परिवेश को सर्वोच्च प्राथमिकता देते हैं।'
+                },
+                {
+                    question: 'मासिक किराया सीमा क्या है?',
+                    answer: 'हमारा मासिक किराया कमरे के आकार, सिंगल या शेयर्ड ऑक्यूपेंसी के आधार पर आमतौर पर ₹2,000 – ₹5,000 / माह के बीच है। वर्तमान कमरों की उपलब्धता और सटीक दर जानने के लिए हमें सीधे कॉल या व्हाट्सएप करें।'
+                },
+                {
+                    question: 'क्या भोजन या टिफिन सेवा शामिल है?',
+                    answer: 'हम रसोई उपयोग की सुविधा के साथ किराये पर आवास प्रदान करते हैं। यद्यपि परिसर में इन-हाउस भोजन नहीं बनाया जाता, लेकिन कई विश्वसनीय स्थानीय टिफिन और डब्बा डिलीवरी सेवाएं सीधे कमरे तक ताजा घर का खाना पहुंचाती हैं।'
+                },
+                {
+                    question: 'मालिक से कैसे संपर्क करें या कमरा देखने आएं?',
+                    answer: 'आप किसी भी समय सीधे मालिक को +91 9771233530 पर कॉल कर सकते हैं या इस पेज पर दिए गए व्हाट्सएप बटन से संदेश भेज सकते हैं। आप अपनी सुविधानुसार आकर कमरे देख सकते हैं।'
+                },
+                {
+                    question: 'क्या किराए में बिजली और पानी शामिल है?',
+                    answer: 'किराए में 24/7 निरंतर स्वच्छ पानी की आपूर्ति पूरी तरह शामिल है। बिजली की खपत की गणना व्यक्तिगत सब-मीटर रीडिंग के आधार पर स्थानीय मानक दरों पर की जाती है।'
+                },
             ]
         },
         // Contact
@@ -251,14 +314,15 @@ export const translations = {
             title: 'हमसे संपर्क करें',
             subtitle: 'अपना प्रवास बुक करने के लिए तैयार हैं? कभी भी संपर्क करें',
             contactInfo: 'संपर्क जानकारी',
-            primaryPhone: 'प्राथमिक फोन',
+            primaryPhone: 'फोन नंबर',
             secondaryPhone: 'द्वितीयक फोन',
             email: 'ईमेल',
             availability: 'उपलब्धता',
             available247: 'पूछताछ के लिए 24/7 उपलब्ध',
             ourLocation: 'हमारा स्थान',
-            fullAddress: 'पूरा पता',
+            fullAddress: 'सिटी मोंटेसरी स्कूल के पास, छोटकीपट्टी, बरगांव, बिहार – 845401',
             openInMaps: 'गूगल मैप्स में खोलें',
+            getDirections: 'दिशा-निर्देश प्राप्त करें',
         },
         // Map
         map: {
@@ -268,13 +332,21 @@ export const translations = {
         // Footer
         footer: {
             rentalHouse: 'रेंटल हाउस',
-            tagline: 'बिहार में आरामदायक, स्वच्छ और किफायती किराये के आवास के लिए आपकी विश्वसनीय पसंद।',
+            tagline: 'बड़गांव, बिहार में आरामदायक, स्वच्छ और किफायती किराये के आवास के लिए आपकी विश्वसनीय पसंद।',
             quickLinks: 'त्वरित लिंक',
-            contact: 'संपर्क',
-            address: 'पता',
+            contact: 'संपर्क करें',
+            address: 'संपत्ति का पता',
             allRights: 'सर्वाधिकार सुरक्षित।',
             madeWith: 'के साथ बनाया',
-            inBihar: 'बिहार में',
+            inBihar: 'बिहार के मेहमानों के लिए',
+            bannerTitle: 'क्या आप एक आरामदायक कमरे की तलाश में हैं?',
+            bannerSubtitle: 'सीधे मकान मालिक से संपर्क करें और कमरा देखने के लिए समय तय करें।',
+            callNow: 'मालिक को कॉल करें',
+            chatWhatsApp: 'व्हाट्सएप चैट',
+            backToTop: 'ऊपर जाएं',
+            verifiedProperty: 'सत्यापित संपत्ति',
+            waterPower: '24/7 पानी व बिजली',
+            familyFriendly: 'परिवार व छात्रों के अनुकूल',
         },
     },
 };

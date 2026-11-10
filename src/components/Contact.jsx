@@ -1,28 +1,35 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail, Map, Clock, Navigation } from 'lucide-react';
-import TiltCard3D from './TiltCard3D';
+import SectionHeading from './SectionHeading';
 import { useLanguage } from '@/hooks/useLanguage';
 import { translations } from '@/lib/translations';
+import { siteConfig } from '@/config/site';
 
 const ContactItem = ({ icon: Icon, title, content, link, delay }) => (
     <motion.div
-        initial={{ opacity: 0, x: -20 }}
+        initial={{ opacity: 0, x: -16 }}
         whileInView={{ opacity: 1, x: 0 }}
-        transition={{ delay, duration: 0.5 }}
-        className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors group"
+        viewport={{ once: true }}
+        transition={{ delay, duration: 0.4 }}
+        className="flex items-start gap-4 p-3.5 rounded-xl hover:bg-[#FBF0D5]/50 dark:hover:bg-secondary/40 transition-colors group"
     >
-        <div className="w-12 h-12 rounded-full bg-secondary/30 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300 border border-white/5 group-hover:border-gold/30">
-            <Icon className="w-5 h-5 text-gold" />
+        <div className="w-11 h-11 rounded-xl bg-[#FBF0D5] dark:bg-primary/10 border border-[#F0E4CE] dark:border-primary/20 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+            <Icon className="w-5 h-5 text-primary" />
         </div>
-        <div className="flex-1">
-            <h3 className="font-serif font-medium text-foreground mb-1">{title}</h3>
+        <div className="flex-1 min-w-0">
+            <h4 className="font-serif font-medium text-foreground text-sm sm:text-base mb-0.5">{title}</h4>
             {link ? (
-                <a href={link} className="text-muted-foreground hover:text-gold transition-colors block text-sm sm:text-base break-words">
+                <a
+                    href={link}
+                    target={link.startsWith('http') ? '_blank' : undefined}
+                    rel={link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="text-[#4A4036] dark:text-muted-foreground hover:text-primary transition-colors inline-flex items-center min-h-[44px] text-sm sm:text-base break-words"
+                >
                     {content}
                 </a>
             ) : (
-                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                <p className="text-[#4A4036] dark:text-muted-foreground text-sm sm:text-base leading-relaxed py-2">
                     {content}
                 </p>
             )}
@@ -34,118 +41,114 @@ const Contact = () => {
     const { language } = useLanguage();
     const t = translations[language].contact;
 
+    const addressText = language === 'hi' ? siteConfig.address.fullHindi : siteConfig.address.full;
+
     return (
-        <section id="contact" className="section-padding bg-background relative overflow-hidden">
-            {/* Background glows */}
-            <div className="absolute -left-20 top-20 w-72 h-72 bg-gold/5 rounded-full blur-3xl pointer-events-none"></div>
-            <div className="absolute -right-20 bottom-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
-
+        <section id="contact" className="section-padding bg-white dark:bg-background relative overflow-hidden">
             <div className="container-custom relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <span className="text-gold font-medium text-sm uppercase tracking-wider">{t.getInTouch}</span>
-                    <h2 className="text-3xl md:text-5xl font-serif font-bold text-foreground mt-2">
-                        {t.title}
-                    </h2>
-                    <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-                        {t.subtitle}
-                    </p>
-                </motion.div>
+                <SectionHeading
+                    label={t.getInTouch}
+                    title={t.title}
+                    subtitle={t.subtitle}
+                />
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
                     {/* Left Column: Contact Info */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
+                        initial={{ opacity: 0, x: -24 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="space-y-6"
+                        transition={{ duration: 0.5 }}
+                        className="h-full"
                     >
-                        <div className="glass-card p-6 md:p-8 rounded-2xl border-gold/10 h-full">
-                            <h3 className="text-xl font-serif font-bold text-foreground mb-6 pb-4 border-b border-white/10">
-                                {t.contactInfo}
-                            </h3>
+                        <div className="bg-white dark:bg-card border border-[#F0E4CE] dark:border-border/80 p-6 md:p-8 rounded-2xl shadow-card h-full flex flex-col justify-between">
+                            <div>
+                                <h3 className="text-xl font-serif font-bold text-foreground mb-6 pb-4 border-b border-border/60">
+                                    {t.contactInfo}
+                                </h3>
 
-                            <div className="space-y-2">
-                                <ContactItem
-                                    icon={Phone}
-                                    title={t.primaryPhone}
-                                    content="+91 9771233530"
-                                    link="tel:+919771233530"
-                                    delay={0.1}
-                                />
-                                <ContactItem
-                                    icon={Phone}
-                                    title={t.secondaryPhone}
-                                    content="+91 7050308555"
-                                    link="tel:+917050308555"
-                                    delay={0.2}
-                                />
-                                <ContactItem
-                                    icon={Mail}
-                                    title={t.email}
-                                    content="contact@nksahrental.com"
-                                    link="mailto:contact@nksahrental.com"
-                                    delay={0.3}
-                                />
-                                <ContactItem
-                                    icon={Clock}
-                                    title={t.availability}
-                                    content={t.available247}
-                                    delay={0.4}
-                                />
-                                <ContactItem
-                                    icon={Map}
-                                    title={t.ourLocation}
-                                    content={`Chotkipatti Bargaw, near City Montessori School, Bihar 852202`}
-                                    delay={0.5}
-                                />
+                                <div className="space-y-1">
+                                    <ContactItem
+                                        icon={Phone}
+                                        title={t.primaryPhone}
+                                        content={siteConfig.phoneDisplay}
+                                        link={`tel:${siteConfig.phone}`}
+                                        delay={0.05}
+                                    />
+                                    <ContactItem
+                                        icon={Mail}
+                                        title={t.email}
+                                        content={siteConfig.email}
+                                        link={`mailto:${siteConfig.email}`}
+                                        delay={0.1}
+                                    />
+                                    <ContactItem
+                                        icon={Clock}
+                                        title={t.availability}
+                                        content={t.available247}
+                                        delay={0.15}
+                                    />
+                                    <ContactItem
+                                        icon={Map}
+                                        title={t.ourLocation}
+                                        content={addressText}
+                                        link={siteConfig.maps.directionsUrl}
+                                        delay={0.2}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Direct Get Directions Link in Contact Card */}
+                            <div className="pt-6 mt-4 border-t border-border/60">
+                                <a
+                                    href={siteConfig.maps.directionsUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn-outline-3d w-full min-h-[48px] py-3 text-sm flex items-center justify-center gap-2"
+                                >
+                                    <Navigation className="w-4 h-4" />
+                                    <span>{t.getDirections || 'Get Directions'}</span>
+                                </a>
                             </div>
                         </div>
                     </motion.div>
 
-                    {/* Right Column: Map */}
+                    {/* Right Column: Google Map */}
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
+                        initial={{ opacity: 0, x: 24 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="h-full min-h-[300px] md:min-h-[400px]"
+                        transition={{ duration: 0.5 }}
+                        className="h-full min-h-[350px] md:min-h-[440px]"
                     >
-                        <TiltCard3D className="h-full" intensity={5}>
-                            <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-elevated group">
-                                <iframe
-                                    src="https://maps.google.com/maps?q=Nand+Kishor+Rental+House&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                                    width="100%"
-                                    height="100%"
-                                    style={{ border: 0 }}
-                                    allowFullScreen=""
-                                    loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                    className="filter grayscale-[20%] hover:grayscale-0 transition-all duration-700 contrast-125 opacity-90 hover:opacity-100 min-h-[300px] md:min-h-[450px]"
-                                ></iframe>
+                        <div className="relative w-full h-full rounded-2xl overflow-hidden border border-[#F0E4CE] dark:border-border/80 shadow-card bg-card group">
+                            {/* Google Maps Embedded iframe with exact coordinates */}
+                            <iframe
+                                src={siteConfig.maps.embedUrl}
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                className="w-full h-full min-h-[350px] md:min-h-[440px] rounded-2xl transition-all duration-500"
+                                title="NK Sah Rental House location"
+                            />
 
-                                {/* Overlay Gradient */}
-                                <div className="absolute inset-0 pointer-events-none border border-gold/10 rounded-2xl ring-1 ring-white/5"></div>
-
-                                {/* Floating Button */}
-                                <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
-                                    <a
-                                        href="https://google.com/maps/place/Nand+Kishor+Rental+House/data=!4m2!3m1!1s0x0:0xcd551a9781bc0649?sa=X&ved=1t:2428&ictx=111"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gold/90 hover:bg-gold text-black font-semibold shadow-[0_0_20px_rgba(255,215,0,0.3)] transition-all transform hover:scale-105 hover:-translate-y-1 whitespace-nowrap"
-                                    >
-                                        <Navigation className="w-4 h-4 flex-shrink-0" />
-                                        <span>{t.openInMaps}</span>
-                                    </a>
-                                </div>
+                            {/* Single overlay button: Open in Google Maps */}
+                            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 pointer-events-auto">
+                                <a
+                                    href={siteConfig.maps.searchUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn-primary-3d min-h-[44px] py-2.5 px-6 text-sm font-semibold rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap"
+                                    aria-label="Open location in Google Maps"
+                                >
+                                    <Navigation className="w-4 h-4 flex-shrink-0" />
+                                    <span>{t.openInMaps}</span>
+                                </a>
                             </div>
-                        </TiltCard3D>
+                        </div>
                     </motion.div>
                 </div>
             </div>
