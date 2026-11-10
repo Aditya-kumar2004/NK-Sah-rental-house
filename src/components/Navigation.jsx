@@ -111,10 +111,10 @@ const Navigation = () => {
                             <LanguageToggle />
                             <ThemeToggle />
                             <a
-                                href="tel:+919771233530"
-                                className="btn-primary-3d py-2.5 px-5 text-sm flex items-center gap-2 text-[#1F1A14] dark:text-zinc-950 font-semibold"
+                                href={`tel:${siteConfig.phone}`}
+                                className="relative py-2.5 px-5 text-sm flex items-center gap-2 text-white bg-gradient-to-r from-red-600 via-red-500 to-rose-600 hover:from-red-500 hover:to-rose-500 rounded-xl font-semibold shadow-[0_2px_12px_rgba(220,38,38,0.35)] hover:shadow-[0_4px_16px_rgba(220,38,38,0.55)] border border-red-400/30 transition-all duration-200 active:scale-95 group"
                             >
-                                <Phone className="w-4 h-4" />
+                                <Phone className="w-4 h-4 text-white transition-transform group-hover:rotate-12" />
                                 <span>{t.callNow}</span>
                             </a>
                         </div>
@@ -238,11 +238,11 @@ const Navigation = () => {
                                 </div>
 
                                 <a
-                                    href="tel:+919771233530"
+                                    href={`tel:${siteConfig.phone}`}
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="btn-primary-3d w-full min-h-[48px] py-3.5 flex items-center justify-center gap-2 mt-4 text-sm font-semibold shadow-md"
+                                    className="w-full min-h-[48px] py-3.5 flex items-center justify-center gap-2 mt-4 text-sm font-semibold rounded-xl text-white bg-gradient-to-r from-red-600 via-red-500 to-rose-600 hover:from-red-500 hover:to-rose-500 shadow-[0_4px_16px_rgba(220,38,38,0.4)] transition-all active:scale-95"
                                 >
-                                    <Phone className="w-4 h-4" />
+                                    <Phone className="w-4 h-4 text-white" />
                                     <span>{t.callNow}</span>
                                 </a>
                             </div>
