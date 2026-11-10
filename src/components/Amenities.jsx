@@ -91,7 +91,7 @@ const Amenities = () => {
 
                                                 <div className="flex items-center gap-2">
                                                     {amenity.tag && (
-                                                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-semibold tracking-wide bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/25">
+                                                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-body font-semibold tracking-wide bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/25">
                                                             {amenity.tag}
                                                         </span>
                                                     )}
@@ -101,13 +101,13 @@ const Amenities = () => {
                                                 </div>
                                             </div>
 
-                                            {/* Title */}
-                                            <h3 className="text-xl sm:text-2xl font-serif font-bold text-foreground mb-3 group-hover:text-primary transition-colors leading-snug">
+                                            {/* H3 Card Title: 1.25rem to 1.5rem, weight 600 */}
+                                            <h3 className="text-[1.25rem] sm:text-[1.5rem] font-heading font-semibold text-foreground mb-3 group-hover:text-primary transition-colors leading-[1.3] tracking-[-0.01em]">
                                                 {amenity.title}
                                             </h3>
 
                                             {/* Description */}
-                                            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed font-normal">
+                                            <p className="text-muted-foreground text-sm sm:text-base leading-[1.7] font-body font-normal">
                                                 {amenity.description}
                                             </p>
                                         </div>

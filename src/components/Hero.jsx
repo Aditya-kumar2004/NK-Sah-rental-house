@@ -24,13 +24,13 @@ const Hero = () => {
                         <span>{t.location}</span>
                     </div>
 
-                    {/* H1 Title: clamp(2.2rem, 6vw, 4.5rem) */}
-                    <h1 className="text-[clamp(2.2rem,6vw,4.5rem)] font-serif font-bold text-[#110E0B] dark:text-white tracking-tight leading-[1.1] mb-4 sm:mb-5 text-balance drop-shadow-sm dark:drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+                    {/* H1 Title: clamp(2.4rem, 6vw, 4.5rem), line-height 1.1, weight 700 */}
+                    <h1 className="text-[clamp(2.4rem,6vw,4.5rem)] font-heading font-bold text-[#110E0B] dark:text-white tracking-[-0.01em] leading-[1.1] mb-4 sm:mb-5 text-balance drop-shadow-sm dark:drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
                         {t.title || 'NK Sah Rental House'}
                     </h1>
 
-                    {/* Subtitle: Crisp typography without any blurry smoke or glow */}
-                    <p className="text-base sm:text-xl md:text-2xl text-[#1F1A14] dark:text-white/85 font-normal leading-relaxed max-w-2xl mb-5 sm:mb-6 text-balance drop-shadow-none dark:drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]">
+                    {/* Subtitle: Plus Jakarta Sans / Noto Sans Devanagari */}
+                    <p className="text-base sm:text-xl md:text-2xl text-[#1F1A14] dark:text-white/85 font-body font-normal leading-[1.7] max-w-2xl mb-5 sm:mb-6 text-balance drop-shadow-none dark:drop-shadow-[0_1px_8px_rgba(0,0,0,0.8)]">
                         {t.subtitle || t.description}
                     </p>
 
@@ -44,18 +44,18 @@ const Hero = () => {
                                 />
                             ))}
                         </div>
-                        <span className="text-[#110E0B] dark:text-white font-medium text-sm sm:text-base flex items-center gap-2">
+                        <span className="text-[#110E0B] dark:text-white font-body font-medium text-sm sm:text-base flex items-center gap-2">
                             <span className="font-semibold">4.9</span>
                             <span className="w-1 h-1 rounded-full bg-[#110E0B]/30 dark:bg-white/60 inline-block" />
                             <span className="text-[#3D3226] dark:text-white/90">{t.rating}</span>
                         </span>
                     </div>
 
-                    {/* Two buttons: Primary 'Call Now' (Red Luxury Gradient) and Secondary 'Get Directions' */}
+                    {/* Two buttons: Primary 'Call Now' (Red Luxury Gradient, 15-16px, weight 600) and Secondary 'Get Directions' */}
                     <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
                         <a
                             href={`tel:${siteConfig.phone}`}
-                            className="relative w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-semibold text-white bg-gradient-to-r from-red-600 via-red-500 to-rose-600 hover:from-red-500 hover:to-rose-500 active:scale-95 shadow-[0_4px_20px_rgba(220,38,38,0.45)] hover:shadow-[0_6px_25px_rgba(220,38,38,0.65)] border border-red-400/30 transition-all duration-300 text-base select-none group"
+                            className="relative w-full sm:w-auto min-h-[48px] inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-xl font-body font-semibold text-white bg-gradient-to-r from-red-600 via-red-500 to-rose-600 hover:from-red-500 hover:to-rose-500 active:scale-95 shadow-[0_4px_20px_rgba(220,38,38,0.45)] hover:shadow-[0_6px_25px_rgba(220,38,38,0.65)] border border-red-400/30 transition-all duration-300 text-[15px] sm:text-base select-none group"
                         >
                             <Phone className="w-5 h-5 text-white transition-transform duration-300 group-hover:rotate-12" />
                             <span>{t.callNow}</span>
@@ -64,7 +64,7 @@ const Hero = () => {
                             href={siteConfig.maps.directionsUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full sm:w-auto min-h-[48px] flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl text-[#1F1A14] dark:text-white bg-white dark:bg-white/10 hover:bg-[#FFF3DB] dark:hover:bg-white/20 backdrop-blur-md border border-[#B8820F]/35 dark:border-white/25 hover:border-[#B8820F] dark:hover:border-white/50 transition-all duration-300 shadow-sm hover:-translate-y-0.5"
+                            className="w-full sm:w-auto min-h-[48px] flex items-center justify-center gap-2 px-8 py-3.5 text-[15px] sm:text-base font-body font-semibold rounded-xl text-[#1F1A14] dark:text-white bg-white dark:bg-white/10 hover:bg-[#FFF3DB] dark:hover:bg-white/20 backdrop-blur-md border border-[#B8820F]/35 dark:border-white/25 hover:border-[#B8820F] dark:hover:border-white/50 transition-all duration-300 shadow-sm hover:-translate-y-0.5"
                         >
                             <MapPin className="w-5 h-5 text-amber-500" />
                             <span>{t.getDirections}</span>

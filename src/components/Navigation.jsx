@@ -73,7 +73,7 @@ const Navigation = () => {
                             </div>
                             <div className="hidden sm:block">
                                 <p
-                                    className={`font-serif font-semibold leading-tight transition-colors ${
+                                    className={`font-heading font-semibold text-lg leading-tight tracking-[-0.01em] transition-colors ${
                                         isScrolled
                                             ? 'text-[#1F1A14] dark:text-foreground'
                                             : 'text-[#1F1A14] dark:text-white drop-shadow-none dark:drop-shadow-sm'
@@ -82,7 +82,7 @@ const Navigation = () => {
                                     NK Sah
                                 </p>
                                 <p
-                                    className={`text-xs transition-colors ${
+                                    className={`text-xs font-body transition-colors ${
                                         isScrolled
                                             ? 'text-muted-foreground'
                                             : 'text-[#5A4E3F] dark:text-white/80'
@@ -99,7 +99,7 @@ const Navigation = () => {
                                 <a
                                     key={link.href}
                                     href={link.href}
-                                    className={`relative font-medium text-sm py-1 transition-colors ${
+                                    className={`relative font-body font-medium text-[15px] py-1 transition-colors ${
                                         isScrolled
                                             ? 'text-[#4A4036] dark:text-foreground/80 hover:text-primary dark:hover:text-primary'
                                             : 'text-[#1F1A14] dark:text-white/90 hover:text-primary dark:hover:text-amber-300'
@@ -113,7 +113,7 @@ const Navigation = () => {
                             <ThemeToggle />
                             <a
                                 href={`tel:${siteConfig.phone}`}
-                                className="relative py-2.5 px-5 text-sm flex items-center gap-2 text-white bg-gradient-to-r from-red-600 via-red-500 to-rose-600 hover:from-red-500 hover:to-rose-500 rounded-xl font-semibold shadow-[0_2px_12px_rgba(220,38,38,0.35)] hover:shadow-[0_4px_16px_rgba(220,38,38,0.55)] border border-red-400/30 transition-all duration-200 active:scale-95 group"
+                                className="relative py-2.5 px-5 text-[15px] flex items-center gap-2 text-white bg-gradient-to-r from-red-600 via-red-500 to-rose-600 hover:from-red-500 hover:to-rose-500 rounded-xl font-body font-semibold shadow-[0_2px_12px_rgba(220,38,38,0.35)] hover:shadow-[0_4px_16px_rgba(220,38,38,0.55)] border border-red-400/30 transition-all duration-200 active:scale-95 group"
                             >
                                 <Phone className="w-4 h-4 text-white transition-transform group-hover:rotate-12" />
                                 <span>{t.callNow}</span>
@@ -191,8 +191,8 @@ const Navigation = () => {
                                             </picture>
                                         </div>
                                         <div>
-                                            <p className="font-serif font-bold text-foreground leading-tight">NK Sah</p>
-                                            <p className="text-[11px] text-muted-foreground">
+                                            <p className="font-heading font-semibold text-lg text-foreground leading-tight tracking-[-0.01em]">NK Sah</p>
+                                            <p className="text-[11px] font-body text-muted-foreground">
                                                 {language === 'en' ? 'Rental House' : 'रेंटल हाउस'}
                                             </p>
                                         </div>
@@ -214,7 +214,7 @@ const Navigation = () => {
                                             key={link.href}
                                             href={link.href}
                                             onClick={() => setIsMobileMenuOpen(false)}
-                                            className="flex items-center min-h-[44px] px-3.5 py-2.5 rounded-xl text-foreground/85 hover:text-primary hover:bg-secondary/60 transition-colors font-medium text-base"
+                                            className="flex items-center min-h-[44px] px-3.5 py-2.5 rounded-xl text-foreground/85 hover:text-primary hover:bg-secondary/60 transition-colors font-body font-medium text-base"
                                         >
                                             {link.label}
                                         </a>
@@ -225,7 +225,7 @@ const Navigation = () => {
                             {/* Drawer Bottom Controls: Language, Theme & Call Now */}
                             <div className="pt-4 border-t border-border/70 space-y-3">
                                 <div className="flex items-center justify-between min-h-[44px] px-2 py-1">
-                                    <span className="text-foreground/80 font-medium text-sm">
+                                    <span className="text-foreground/80 font-body font-medium text-sm">
                                         {language === 'en' ? 'Language' : 'भाषा'}
                                     </span>
                                     <LanguageToggle />
@@ -241,7 +241,7 @@ const Navigation = () => {
                                 <a
                                     href={`tel:${siteConfig.phone}`}
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="w-full min-h-[48px] py-3.5 flex items-center justify-center gap-2 mt-4 text-sm font-semibold rounded-xl text-white bg-gradient-to-r from-red-600 via-red-500 to-rose-600 hover:from-red-500 hover:to-rose-500 shadow-[0_4px_16px_rgba(220,38,38,0.4)] transition-all active:scale-95"
+                                    className="w-full min-h-[48px] py-3.5 flex items-center justify-center gap-2 mt-4 text-[15px] font-body font-semibold rounded-xl text-white bg-gradient-to-r from-red-600 via-red-500 to-rose-600 hover:from-red-500 hover:to-rose-500 shadow-[0_4px_16px_rgba(220,38,38,0.4)] transition-all active:scale-95"
                                 >
                                     <Phone className="w-4 h-4 text-white" />
                                     <span>{t.callNow}</span>

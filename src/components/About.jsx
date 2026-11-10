@@ -27,29 +27,29 @@ const About = () => {
                         transition={{ duration: 0.6 }}
                         className="flex flex-col justify-center"
                     >
-                        <h3 className="text-2xl sm:text-3xl font-serif font-bold text-foreground mb-4 leading-tight">
+                        <h3 className="text-[1.25rem] sm:text-[1.5rem] font-heading font-semibold text-foreground mb-4 leading-[1.3] tracking-[-0.01em]">
                             {t.name}
                         </h3>
 
-                        <p className="text-foreground/90 text-base sm:text-lg leading-relaxed mb-4 font-normal">
+                        <p className="text-foreground/90 text-base sm:text-[17px] leading-[1.7] mb-4 font-body font-normal">
                             {t.name} {t.description1}
                         </p>
 
-                        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6 font-normal">
+                        <p className="text-muted-foreground text-sm sm:text-base leading-[1.7] mb-6 font-body font-normal">
                             {t.description2}
                         </p>
 
                         {/* 3 Highlight Badges */}
                         <div className="flex flex-wrap gap-2.5 pt-2">
-                            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FBF0D5] dark:bg-secondary border border-[#F0E4CE] dark:border-border/80 text-[#1F1A14] dark:text-foreground text-xs sm:text-sm font-medium shadow-subtle">
+                            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FBF0D5] dark:bg-secondary border border-[#F0E4CE] dark:border-border/80 text-[#1F1A14] dark:text-foreground text-xs sm:text-sm font-body font-medium shadow-subtle">
                                 <span className="text-primary font-bold">✓</span>
                                 <span>{t.familyFriendly}</span>
                             </span>
-                            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FBF0D5] dark:bg-secondary border border-[#F0E4CE] dark:border-border/80 text-[#1F1A14] dark:text-foreground text-xs sm:text-sm font-medium shadow-subtle">
+                            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FBF0D5] dark:bg-secondary border border-[#F0E4CE] dark:border-border/80 text-[#1F1A14] dark:text-foreground text-xs sm:text-sm font-body font-medium shadow-subtle">
                                 <span className="text-primary font-bold">✓</span>
                                 <span>{t.cleanRooms}</span>
                             </span>
-                            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FBF0D5] dark:bg-secondary border border-[#F0E4CE] dark:border-border/80 text-[#1F1A14] dark:text-foreground text-xs sm:text-sm font-medium shadow-subtle">
+                            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FBF0D5] dark:bg-secondary border border-[#F0E4CE] dark:border-border/80 text-[#1F1A14] dark:text-foreground text-xs sm:text-sm font-body font-medium shadow-subtle">
                                 <span className="text-primary font-bold">✓</span>
                                 <span>{t.affordableRates}</span>
                             </span>

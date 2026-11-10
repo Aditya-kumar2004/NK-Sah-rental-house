@@ -20,13 +20,13 @@ const SectionHeading = ({
         >
             {label && (
                 <div className="inline-flex items-center gap-2 mb-3">
-                    <span className="text-primary text-xs sm:text-sm font-semibold tracking-widest uppercase">
+                    <span className="section-label text-primary">
                         {label}
                     </span>
                 </div>
             )}
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-foreground tracking-tight leading-[1.2]">
+            <h2 className="text-[clamp(1.9rem,4vw,3rem)] font-heading font-semibold text-foreground tracking-[-0.01em] leading-[1.2]">
                 {title}
             </h2>
 
@@ -39,7 +39,7 @@ const SectionHeading = ({
             />
 
             {subtitle && (
-                <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal max-w-2xl mx-auto">
+                <p className="text-muted-foreground text-base sm:text-[17px] leading-[1.7] font-body font-normal max-w-2xl mx-auto">
                     {subtitle}
                 </p>
             )}

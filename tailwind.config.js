@@ -21,8 +21,10 @@ export default {
                 container: "1200px",
             },
             fontFamily: {
-                serif: ['"Playfair Display"', '"Noto Serif Devanagari"', 'serif'],
-                sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+                heading: ['var(--font-heading)', 'Georgia', 'serif'],
+                body: ['var(--font-body)', 'system-ui', '-apple-system', 'sans-serif'],
+                serif: ['var(--font-heading)', 'Georgia', 'serif'],
+                sans: ['var(--font-body)', 'system-ui', '-apple-system', 'sans-serif'],
             },
             colors: {
                 border: "hsl(var(--border))",

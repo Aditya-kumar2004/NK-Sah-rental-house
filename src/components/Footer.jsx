@@ -54,13 +54,13 @@ const Footer = () => {
 
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
                         <div className="max-w-2xl">
-                            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold bg-primary/15 text-primary border border-primary/25 mb-4 uppercase tracking-wider">
+                            <span className="section-label text-primary inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-primary/15 border border-primary/25 mb-4">
                                 📍 {siteConfig.address.short}
                             </span>
-                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white tracking-tight leading-snug mb-3">
+                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-heading font-semibold text-white tracking-[-0.01em] leading-snug mb-3">
                                 {t.bannerTitle}
                             </h3>
-                            <p className="text-zinc-400 text-sm sm:text-base leading-relaxed">
+                            <p className="text-zinc-400 font-body text-sm sm:text-base leading-[1.7]">
                                 {t.bannerSubtitle}
                             </p>
                         </div>
@@ -101,30 +101,30 @@ const Footer = () => {
                                 />
                             </div>
                             <div>
-                                <p className="font-serif font-bold text-xl leading-tight text-white tracking-wide">
+                                <p className="font-heading font-bold text-xl leading-tight text-white tracking-[-0.01em]">
                                     NK Sah
                                 </p>
-                                <p className="text-primary text-[11px] uppercase tracking-widest font-semibold">
+                                <p className="text-primary text-[11px] font-body uppercase tracking-widest font-semibold">
                                     {t.rentalHouse}
                                 </p>
                             </div>
                         </div>
 
-                        <p className="text-zinc-400 text-sm leading-relaxed mb-6 max-w-sm">
+                        <p className="text-zinc-400 font-body text-sm leading-[1.7] mb-6 max-w-sm">
                             {t.tagline}
                         </p>
 
                         {/* 3 Trust Badges */}
                         <div className="space-y-2">
-                            <div className="flex items-center gap-2 text-xs text-zinc-300 font-medium">
+                            <div className="flex items-center gap-2 text-xs font-body text-zinc-300 font-medium">
                                 <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                                 <span>{t.verifiedProperty || 'Verified Private Property'}</span>
                             </div>
-                            <div className="flex items-center gap-2 text-xs text-zinc-300 font-medium">
+                            <div className="flex items-center gap-2 text-xs font-body text-zinc-300 font-medium">
                                 <Zap className="w-4 h-4 text-amber-400 flex-shrink-0" />
                                 <span>{t.waterPower || '24/7 Water & Power Supply'}</span>
                             </div>
-                            <div className="flex items-center gap-2 text-xs text-zinc-300 font-medium">
+                            <div className="flex items-center gap-2 text-xs font-body text-zinc-300 font-medium">
                                 <Users className="w-4 h-4 text-sky-400 flex-shrink-0" />
                                 <span>{t.familyFriendly || 'Family & Student Friendly'}</span>
                             </div>
@@ -133,7 +133,7 @@ const Footer = () => {
 
                     {/* Column 2: Navigation Links (2 cols) */}
                     <div className="lg:col-span-2">
-                        <h4 className="font-serif font-bold text-sm uppercase tracking-widest text-primary mb-5">
+                        <h4 className="section-label text-primary mb-5">
                             {t.quickLinks}
                         </h4>
                         <ul className="space-y-2.5">
@@ -141,7 +141,7 @@ const Footer = () => {
                                 <li key={link.href}>
                                     <a
                                         href={link.href}
-                                        className="text-zinc-400 hover:text-white transition-colors text-sm flex items-center gap-1.5 group py-1"
+                                        className="text-zinc-400 hover:text-white transition-colors text-sm font-body flex items-center gap-1.5 group py-1"
                                     >
                                         <span className="w-1 h-1 rounded-full bg-primary/40 group-hover:w-2 group-hover:bg-primary transition-all duration-200" />
                                         <span>{link.label}</span>
@@ -153,7 +153,7 @@ const Footer = () => {
 
                     {/* Column 3: Contact Channels (3 cols) */}
                     <div className="lg:col-span-3">
-                        <h4 className="font-serif font-bold text-sm uppercase tracking-widest text-primary mb-5">
+                        <h4 className="section-label text-primary mb-5">
                             {t.contact}
                         </h4>
 
@@ -218,7 +218,7 @@ const Footer = () => {
 
                     {/* Column 4: Location & Directions (3 cols) */}
                     <div className="lg:col-span-3">
-                        <h4 className="font-serif font-bold text-sm uppercase tracking-widest text-primary mb-5">
+                        <h4 className="section-label text-primary mb-5">
                             {t.address}
                         </h4>
 

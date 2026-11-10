@@ -34,9 +34,9 @@ const FAQItem = ({ item, index, isOpen, onClick }) => {
                         {formattedNumber}
                     </span>
 
-                    {/* Question Title */}
+                    {/* Question Title in Plus Jakarta Sans / Noto Sans Devanagari */}
                     <span
-                        className={`text-base sm:text-lg font-serif transition-colors leading-snug ${
+                        className={`text-base sm:text-lg font-body transition-colors leading-[1.4] ${
                             isOpen
                                 ? 'text-primary font-bold'
                                 : 'text-[#1F1A14] dark:text-white font-semibold group-hover:text-primary'
@@ -95,15 +95,15 @@ const FAQ = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                     {/* Left Column: Editorial Sticky Heading & Direct Support Card */}
                     <div className="lg:col-span-5 lg:sticky lg:top-28">
-                        {/* Section Label */}
+                        {/* Section Label: 0.8rem, uppercase, weight 600, letter-spacing 0.15em */}
                         <div className="inline-flex items-center gap-2 mb-3">
-                            <span className="text-primary text-xs sm:text-sm font-semibold tracking-widest uppercase">
+                            <span className="section-label text-primary">
                                 {t.label || 'FAQ'}
                             </span>
                         </div>
 
-                        {/* Title */}
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-[#1F1A14] dark:text-white tracking-tight leading-[1.15]">
+                        {/* Title: clamp(1.9rem, 4vw, 3rem), weight 600 */}
+                        <h2 className="text-[clamp(1.9rem,4vw,3rem)] font-heading font-semibold text-[#1F1A14] dark:text-white tracking-[-0.01em] leading-[1.2]">
                             {t.title}
                         </h2>
 
@@ -115,7 +115,7 @@ const FAQ = () => {
                         </div>
 
                         {/* Subtitle */}
-                        <p className="text-[#5A4E3F] dark:text-muted-foreground text-base sm:text-lg leading-relaxed font-normal mb-8 max-w-md">
+                        <p className="text-[#5A4E3F] dark:text-muted-foreground text-base sm:text-[17px] leading-[1.7] font-body font-normal mb-8 max-w-md">
                             {t.subtitle}
                         </p>
 
@@ -125,10 +125,10 @@ const FAQ = () => {
                                 <HelpCircle className="w-6 h-6" />
                             </div>
 
-                            <h3 className="font-serif font-bold text-lg text-[#1F1A14] dark:text-white mb-1.5">
+                            <h3 className="font-heading font-semibold text-[1.25rem] text-[#1F1A14] dark:text-white mb-1.5 tracking-[-0.01em]">
                                 {t.stillHaveQuestions || 'Still Have Questions?'}
                             </h3>
-                            <p className="text-xs sm:text-sm text-muted-foreground mb-5 leading-relaxed">
+                            <p className="text-xs sm:text-sm font-body text-muted-foreground mb-5 leading-[1.7]">
                                 {t.stillHaveQuestionsSub || 'Can’t find the answer? Contact the owner directly for instant details.'}
                             </p>
 

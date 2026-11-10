@@ -75,23 +75,23 @@ const Stats = () => {
                                     </div>
 
                                     {/* Shimmering Big Number Counter */}
-                                    <div className="flex items-baseline justify-center font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-foreground tracking-tight mb-1">
+                                    <div className="flex items-baseline justify-center font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-foreground tracking-[-0.01em] mb-1">
                                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 dark:from-amber-400 dark:via-yellow-300 dark:to-amber-500">
                                             <AnimatedNumber value={stat.value} />
                                         </span>
-                                        <span className="ml-0.5 text-2xl sm:text-3xl lg:text-4xl text-amber-500 font-serif">
+                                        <span className="ml-0.5 text-2xl sm:text-3xl lg:text-4xl text-amber-500 font-heading">
                                             {stat.suffix}
                                         </span>
                                     </div>
 
-                                    {/* Stat Label */}
-                                    <p className="text-foreground font-semibold text-xs sm:text-sm tracking-wider uppercase mt-1">
+                                    {/* Stat Label: Plus Jakarta Sans / Noto Sans Devanagari */}
+                                    <p className="text-foreground font-body font-semibold text-xs sm:text-sm tracking-wider uppercase mt-1">
                                         {stat.label}
                                     </p>
 
                                     {/* Subtitle / Verification Tag */}
                                     {stat.sub && (
-                                        <span className="inline-block text-[11px] sm:text-xs text-muted-foreground mt-1 font-medium">
+                                        <span className="inline-block text-[11px] sm:text-xs text-muted-foreground mt-1 font-body font-medium">
                                             {stat.sub}
                                         </span>
                                     )}

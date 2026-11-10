@@ -96,7 +96,7 @@ const Reviews = () => {
                                 </div>
 
                                 {/* Review Quote Text */}
-                                <blockquote className="text-sm sm:text-base text-foreground font-serif italic leading-relaxed line-clamp-4 font-normal">
+                                <blockquote className="text-sm sm:text-base text-foreground font-heading italic leading-[1.7] line-clamp-4 font-normal">
                                     "{item.text}"
                                 </blockquote>
                             </div>
@@ -106,7 +106,7 @@ const Reviews = () => {
                                 {/* Monogram Avatar */}
                                 <div className="relative flex-shrink-0">
                                     <div className="w-11 h-11 rounded-full bg-gradient-to-br from-amber-500/20 to-primary/30 border-2 border-primary/40 flex items-center justify-center shadow-sm">
-                                        <span className="font-serif font-bold text-sm text-primary dark:text-amber-400">
+                                        <span className="font-heading font-bold text-sm text-primary dark:text-amber-400">
                                             {item.initials || item.name.slice(0, 2).toUpperCase()}
                                         </span>
                                     </div>
@@ -115,10 +115,10 @@ const Reviews = () => {
 
                                 {/* Reviewer Details */}
                                 <div className="overflow-hidden">
-                                    <p className="font-serif font-bold text-sm sm:text-base text-[#1F1A14] dark:text-white tracking-wide truncate">
+                                    <p className="font-heading font-semibold text-sm sm:text-base text-[#1F1A14] dark:text-white tracking-[-0.01em] truncate">
                                         {item.name}
                                     </p>
-                                    <p className="text-muted-foreground text-xs uppercase tracking-wider mt-0.5 font-medium flex items-center gap-1 truncate">
+                                    <p className="text-muted-foreground text-xs font-body uppercase tracking-wider mt-0.5 font-medium flex items-center gap-1 truncate">
                                         <span>{item.date}</span>
                                         <span>•</span>
                                         <span className="text-primary font-semibold truncate">{t.verifiedStay || 'Verified'}</span>

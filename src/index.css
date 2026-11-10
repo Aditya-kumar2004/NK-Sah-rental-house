@@ -4,6 +4,11 @@
 
 @layer base {
   :root {
+    /* Typography Tokens - English Mode */
+    --font-heading: 'Playfair Display', 'Noto Serif Devanagari', 'Georgia-Fallback', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', 'Noto Sans Devanagari', 'Sans-Fallback', system-ui, -apple-system, sans-serif;
+    --line-height-body: 1.7;
+
     /* Spacing & Layout Tokens */
     --space-section-desktop: 5rem; /* 80px / py-20 */
     --space-section-mobile: 3rem;  /* 48px / py-12 */
@@ -117,6 +122,33 @@
     --shadow-elevated: 0 20px 45px -10px rgba(0, 0, 0, 0.75);
     --shadow-glow: 0 0 40px -10px hsl(38 78% 52% / 0.3);
   }
+
+  /* Hindi Mode Typography */
+  html[lang="hi"],
+  :lang(hi) {
+    --font-heading: 'Noto Serif Devanagari', 'Playfair Display', 'Georgia-Fallback', Georgia, serif;
+    --font-body: 'Noto Sans Devanagari', 'Plus Jakarta Sans', 'Sans-Fallback', system-ui, -apple-system, sans-serif;
+    --line-height-body: 1.8; /* Hindi needs +0.1 line height */
+  }
+}
+
+/* Fallback fonts with size-adjust to prevent Cumulative Layout Shift (CLS) */
+@font-face {
+  font-family: 'Georgia-Fallback';
+  src: local('Georgia');
+  size-adjust: 100%;
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Sans-Fallback';
+  src: local('system-ui'), local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI');
+  size-adjust: 98%;
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
 }
 
 @layer base {
@@ -132,24 +164,69 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: var(--line-height-body, 1.7);
     overflow-x: hidden;
     max-width: 100%;
     width: 100%;
   }
 
-  /* Headings in Playfair Display (normal title case, no all-small-caps) */
+  @media (min-width: 1024px) {
+    body {
+      font-size: 17px;
+    }
+  }
+
+  /* Headings: Playfair Display / Noto Serif Devanagari (normal title case, letter-spacing -0.01em) */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: 'Playfair Display', 'Noto Serif Devanagari', serif;
+    font-family: var(--font-heading);
     font-variant-caps: normal;
     text-transform: none;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.01em;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  /* Hindi mode line height expansion (+0.1) to avoid clipping matras */
+  html[lang="hi"] body {
+    line-height: 1.8;
+  }
+
+  html[lang="hi"] h1 {
+    line-height: 1.2;
+  }
+
+  html[lang="hi"] h2 {
+    line-height: 1.3;
+  }
+
+  html[lang="hi"] h3,
+  html[lang="hi"] h4,
+  html[lang="hi"] h5,
+  html[lang="hi"] h6 {
+    line-height: 1.4;
   }
 
   ::selection {
@@ -175,11 +252,29 @@
     box-shadow: var(--shadow-card);
   }
 
-  /* Buttons: Primary Gold Gradient with focus & hover states */
+  /* Small gold section labels: 0.8rem, uppercase, weight 600, letter-spacing 0.15em, in Plus Jakarta Sans */
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  /* Buttons: Primary Gold Gradient (15-16px, weight 600) with focus & hover states */
   .btn-primary-3d {
-    @apply relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-black transition-all duration-300 select-none;
+    @apply relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-black transition-all duration-300 select-none;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
     background: var(--gradient-gold);
     box-shadow: 0 4px 14px -2px hsl(38 78% 45% / 0.4), inset 0 1px 0 hsl(0 0% 100% / 0.25);
+  }
+
+  @media (min-width: 640px) {
+    .btn-primary-3d {
+      font-size: 16px;
+    }
   }
 
   .btn-primary-3d:hover {
@@ -197,9 +292,18 @@
     @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
   }
 
-  /* Buttons: Outline with focus & hover states */
+  /* Buttons: Outline with focus & hover states (15-16px, weight 600) */
   .btn-outline-3d {
-    @apply relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold border border-primary/60 text-primary transition-all duration-300 bg-transparent select-none;
+    @apply relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl border border-primary/60 text-primary transition-all duration-300 bg-transparent select-none;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  @media (min-width: 640px) {
+    .btn-outline-3d {
+      font-size: 16px;
+    }
   }
 
   .btn-outline-3d:hover {

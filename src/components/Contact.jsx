@@ -72,16 +72,16 @@ const Contact = () => {
 
                             <div>
                                 {/* Header Badge: Zero Brokerage & Verified Owner */}
-                                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs font-semibold mb-4 tracking-wide">
+                                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs font-body font-semibold mb-4 tracking-wide">
                                     <ShieldCheck className="w-4 h-4 flex-shrink-0" />
                                     <span>{t.badge || 'Direct Owner Connect • Zero Brokerage'}</span>
                                 </div>
 
-                                <h3 className="text-2xl sm:text-3xl font-serif font-bold text-foreground mb-3 leading-tight">
+                                <h3 className="text-[1.25rem] sm:text-[1.5rem] font-heading font-semibold text-foreground mb-3 leading-[1.3] tracking-[-0.01em]">
                                     {t.heading || 'Connect Directly with the Property Owner'}
                                 </h3>
 
-                                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-7 max-w-xl">
+                                <p className="text-sm sm:text-base text-muted-foreground leading-[1.7] mb-7 max-w-xl font-body">
                                     {t.description || 'Whether you want to check room availability, schedule a private walkthrough, or discuss pricing, we are here to assist you.'}
                                 </p>
 
@@ -232,7 +232,7 @@ const Contact = () => {
                                     <div className="flex items-center justify-between gap-3 mb-2.5">
                                         <div className="flex items-center gap-2">
                                             <MapPin className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                                            <h4 className="font-serif font-bold text-lg text-foreground">
+                                            <h4 className="font-heading font-semibold text-lg text-foreground tracking-[-0.01em]">
                                                 {t.ourLocation || 'Property Location'}
                                             </h4>
                                         </div>
@@ -248,7 +248,7 @@ const Contact = () => {
                                             {copied ? (
                                                 <>
                                                     <Check className="w-3.5 h-3.5 text-emerald-500" />
-                                                    <span className="text-emerald-500 font-sans font-semibold">Copied!</span>
+                                                    <span className="text-emerald-500 font-body font-semibold">Copied!</span>
                                                 </>
                                             ) : (
                                                 <>

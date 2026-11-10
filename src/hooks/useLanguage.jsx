@@ -10,6 +10,9 @@ export const LanguageProvider = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem('language', language);
+        if (typeof document !== 'undefined') {
+            document.documentElement.lang = language;
+        }
     }, [language]);
 
     const toggleLanguage = () => {

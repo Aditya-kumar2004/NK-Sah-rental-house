@@ -137,10 +137,10 @@ const Gallery = () => {
                                 {/* Hover Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                                     <div className="transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300">
-                                        <span className="text-amber-400 text-xs uppercase tracking-wider font-semibold">
+                                        <span className="text-amber-400 text-[0.8rem] uppercase tracking-[0.15em] font-semibold font-body">
                                             {image.category}
                                         </span>
-                                        <h3 className="text-white font-serif text-xl font-semibold mt-1">
+                                        <h3 className="text-white font-heading text-[1.25rem] sm:text-[1.5rem] font-semibold mt-1 tracking-[-0.01em]">
                                             {image.title}
                                         </h3>
                                     </div>
@@ -224,13 +224,13 @@ const Gallery = () => {
 
                             {/* Image Caption */}
                             <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 via-black/50 to-transparent rounded-b-2xl">
-                                <span className="text-amber-400 text-xs uppercase tracking-wider font-semibold">
+                                <span className="text-amber-400 text-[0.8rem] uppercase tracking-[0.15em] font-semibold font-body">
                                     {galleryImages[selectedImage].category}
                                 </span>
-                                <h3 className="text-white font-serif text-xl sm:text-2xl font-semibold mt-1">
+                                <h3 className="text-white font-heading text-[1.25rem] sm:text-[1.5rem] font-semibold mt-1 tracking-[-0.01em]">
                                     {galleryImages[selectedImage].title}
                                 </h3>
-                                <p className="text-white/60 text-xs sm:text-sm mt-0.5">
+                                <p className="text-white/60 font-body text-xs sm:text-sm mt-0.5">
                                     {selectedImage + 1} / {galleryImages.length}
                                 </p>
                             </div>
