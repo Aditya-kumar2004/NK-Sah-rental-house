@@ -5,6 +5,7 @@ import ThemeToggle from './ThemeToggle';
 import LanguageToggle from './LanguageToggle';
 import { useLanguage } from '@/hooks/useLanguage';
 import { translations } from '@/lib/translations';
+import { siteConfig } from '@/config/site';
 
 const Navigation = () => {
     const [isScrolled, setIsScrolled] = useState(false);
